@@ -1,8 +1,6 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
-
-RpgLock.MouseButton1Click:Connect(function()
     local RpgTool = Instance.new('Tool', player.Backpack)
     RpgTool.ToolTip = 'Click a player to rpg lock them'
     RpgTool.CanBeDropped = false
