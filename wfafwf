@@ -1,0 +1,29 @@
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+RpgLock.MouseButton1Click:Connect(function()
+    local RpgTool = Instance.new('Tool', player.Backpack)
+    RpgTool.ToolTip = 'Click a player to rpg lock them'
+    RpgTool.CanBeDropped = false
+    RpgTool.RequiresHandle = false
+    RpgTool.Name = 'Rpg Lock'
+    
+    RpgTool.Activated:Connect(function()
+        local LowerTorso = mouse.Target.Parent:FindFirstChild('LowerTorso')
+        if not LowerTorso then
+            LowerTorso = mouse.Target.Parent.Parent:FindFirstChild('LowerTorso')
+        end
+        if LowerTorso then
+            if LowerTorso.Parent.Name == 'SpecialParts' then
+                RPGTarget = LowerTorso.Parent.Parent.Parent.Name
+            else
+                RPGTarget = LowerTorso.Parent.Name
+            end
+            notify('Rpg locked onto', RPGTarget, 3)
+        else
+            RPGTarget = nil
+            notify('Rpg unlocked', '', 3)
+        end
+    end)
+end)
